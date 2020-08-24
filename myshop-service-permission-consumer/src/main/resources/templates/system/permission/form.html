@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form id="permissionForm" action="" class="form">
+    <input type="hidden" name="id" th:value="${permission?.id}">
+    <div class="form-line">
+        <label for="paentId">父资源</label>
+        <input id="paentId"name="paentId" type="text" th:value="${permission?.parent?.id}" class="easyui-combotree" data-options="editable:false,url:'/system/permission/combo'">
+    </div>
+    <div class="form-line required" >
+        <label for="name">资源名称</label>
+        <input id="name"name="name" type="text" class="easyui-textbox" th:value="${permission?.name}"required>
+    </div>
+    <div class="form-line required">
+        <label for="permissionKey">资源标识</label>
+        <input id="permissionKey" name="permissionKey" type="text" class="easyui-textbox"th:value="${permission?.permissionKey}" required>
+    </div>
+    <div class="form-line">
+        <label for="type">资源类型</label>
+        <select class="easyui-combobox" th:data-options="'editable:false,panelHeight:\'auto\',value:\''+${permission?.type==null?'MENU':permission?.type}+'\''" id="type"name="type" >
+            <option value="MENU">菜单</option>
+            <option value="FUNCTION">功能</option>
+            <option value="BLOCK">区域</option>
+        </select>
+    </div>
+    <div class="form-line">
+        <label for="path">菜单路径</label>
+        <input id="path" name="path" type="text" class="easyui-textbox" data-options="multiline:true" th:value="${permission?.path}">
+    </div>
+    <div class="form-line">
+        <label for="resource">资源</label>
+        <input id="resource" name="resource" type="text" class="easyui-textbox" th:value="${permission?.resource}" data-options="multiline:true">
+    </div>
+    <div class="form-line">
+        <label for="description">描述</label>
+        <input id="description" name="description" type="text" class="easyui-textbox"th:value="${permission?.description}" data-options="multiline:true">
+    </div>
+    <div class="form-line">
+        <label for="weight">权重</label>
+        <input id="weight" name="weight" type="text"th:value="${permission?.weight}" class="easyui-textbox">
+    </div>
+    <div class="form-line">
+        <label for="enable">状态</label>
+        <input id="enable" name="enable" class="easyui-switchbutton" th:checked="${permission?.enable==null ||permission?.enable?'true':'false'}"data-options="onText:'启用',offText:'禁用',value:'1'">
+    </div>
+</form>
+</body>
+</html>

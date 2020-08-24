@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="../easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" href="../easyui/themes/icon.css">
+<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/app.css">
+
+<script src="../lib/jquery.min.js"></script>
+<script src="../easyui/jquery.easyui.min.js"></script>
+<script src="../easyui/locale/easyui-lang-zh_CN.js"></script>
+
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'center'">
+        <table id="roleGrid"></table>
+    </div>
+    <div id="rolePermissionPanel" data-options="region:'east',collapsible:false,tools:'#rolePermissionTools'" style="width:200px;" title="请选择角色">
+        <ul id="rolePermissionTree"></ul>
+    </div>
+</div>
+<div id="roleGridAction" style="display: none" xmlns:th="http://www.thymeleaf.org">
+    <a th:if="${#lists.contains(session.keys,'system:role:edit')}" class="actions fa fa-pencil-square-o edit">编辑</a>
+    <a th:if="${#lists.contains(session.keys,'system:role:delete')}" class="actions fa fa-trash-o delete">删除</a>
+</div>
+<div id="roleGridToolbar" style="display: none" xmlns:th="http://www.thymeleaf.org">
+    <a  th:if="${#lists.contains(session.keys,'system:role:create')}" class="easyui-linkbutton actions create"iconCls="fa fa-plus"plain="true" >创建角色</a>
+</div>
+<div id="rolePermissionTools" xmlns:th="http://www.thymeleaf.org">
+    <a  th:if="${#lists.contains(session.keys,'system:role:rolePermission')}"id="rolePermissionSave" class="fa fa-save"></a>
+</div>
+<script src="../js/role.js"></script>

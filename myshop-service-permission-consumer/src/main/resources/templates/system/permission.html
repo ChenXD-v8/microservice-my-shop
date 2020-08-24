@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="../easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" href="../easyui/themes/icon.css">
+<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/app.css">
+
+<script src="../lib/jquery.min.js"></script>
+<script src="../easyui/jquery.easyui.min.js"></script>
+<script src="../easyui/locale/easyui-lang-zh_CN.js"></script>
+<table id="permissionGrid"></table>
+<div id="permissionGirdAction" style="display: none" xmlns:th="http://www.thymeleaf.org">
+    <a th:if="${#lists.contains(session.keys,'system:permission:edit')}" class="actions fa fa-pencil-square-o edit">编辑</a>
+    <a th:if="${#lists.contains(session.keys,'system:permission:delete')}"  class="actions fa fa-trash-o delete">删除</a>
+</div>
+<div id="permissionGridToolbar" style="display: none" xmlns:th="http://www.thymeleaf.org">
+    <a th:if="${#lists.contains(session.keys,'system:permission:create')}"  class="easyui-linkbutton actions create" iconCls="fa fa-plus" plain="true">创建权限</a>
+</div>
+<script src="../js/permission.js"></script>
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>基于Dubbo的权限管理系统</title>
+    <link rel="stylesheet" href="easyui/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" href="easyui/themes/icon.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="lib/jquery.min.js"></script>
+    <script src="easyui/jquery.easyui.min.js"></script>
+    <script src="easyui/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<script>
+    $(function(){
+       $('#loginBtn').on('click',function () {
+          var loginForm=$('#loginForm');
+          if(loginForm.form("validate")){
+              loginForm.submit();
+          }
+       });
+    });
+</script>
+<body>
+<div class="easyui-dialog"
+     style="height:200px;width: 450px"
+     title="用户登录"
+     data-options="draggable:false,closable:false">
+    <form id="loginForm" method="post" action="login">
+        <div style="margin:20px 60px 20px 60px">
+            <label for="account" style="padding-right:15px">账号:</label>
+            <input id="account" type="text" name="account"style="width:200px" class="easyui-textbox" required>
+        </div>
+        <div style="margin:20px 20px 20px 60px">
+            <label for="password"style="padding-right:15px">密码:</label>
+            <input id="password" type="text" name="password"style="width:200px" class="easyui-passwordbox" required>
+        </div>
+        <div style="text-align:center">
+            <button id="loginBtn" iconCls="fa fa-sign-in" class="easyui-linkbutton">登录</button>
+        </div>
+        <div style="text-align: center;padding: 5px;color: red" th:if="${error!=null}" th:text="${error}"></div>
+    </form>
+</div>
+</body>
+</html>

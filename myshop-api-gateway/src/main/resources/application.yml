@@ -1,0 +1,88 @@
+# Spring boot application
+spring:
+  application:
+    name: myshop-service-api-gateway
+  thymeleaf:
+    cache: false # 开发时关闭缓存,不然没法看到实时页面
+    mode: LEGACYHTML5 # 用非严格的 HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+  jpa:
+    open-in-view: true
+server:
+  port: 9000
+
+# Services Versions
+services:
+  ports:
+    user: 8601
+    login: 8603
+    roles: 8602
+    permission: 8604
+  versions:
+    login:
+      v1: 1.0.0
+    user:
+      v1: 1.0.0
+    roles:
+      v1: 1.0.0
+    permission:
+      v1: 1.0.0
+# Dubbo Config properties
+dubbo:
+  scan:
+    basePackages: com.funtl.myshop.api.gateway.controller
+  ## ApplicationConfig Bean
+  application:
+    id: myshop-service-api-gateway
+    name: myshop-service-api-gateway
+  ## ProtocolConfig Bean
+  protocol:
+    id: dubbo
+    name: dubbo
+    port: 30884
+    status: server
+    serialization: kryo
+  ## RegistryConfig Bean
+  registry:
+    id: zookeeper
+    address: zookeeper://192.168.176.128:2181?backup=192.168.176.128:2182,192.168.176.128:2183
+
+# Dubbo Endpoint (default status is disable)
+endpoints:
+  dubbo:
+    enabled: true
+
+management:
+  server:
+    port: 9001
+  # Dubbo Health
+  health:
+    dubbo:
+      status:
+        ## StatusChecker Name defaults (default : "memory", "load" )
+        defaults: memory
+  # Enables Dubbo All Endpoints
+  endpoint:
+    dubbo:
+      enabled: true
+    dubbo-shutdown:
+      enabled: true
+    dubbo-configs:
+      enabled: true
+    dubbo-services:
+      enabled: true
+    dubbo-references:
+      enabled: true
+    dubbo-properties:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#id为0的是超级用户不受权限影响
+system:
+  user:
+    id: 0
+
